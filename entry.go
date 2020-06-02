@@ -26,14 +26,10 @@ func (b Bratok) getActions () (string, string) {
 	return b.becameBeast, b.useFork
 }
 
-func doPolymorfStuff (c Character) {
-	switch c.(type) {
-	case Pahom: 
-		tellStory, poop := c.(Pahom).getActions()
-		fmt.Printf("%v . 3 Hours later... %v", tellStory, poop)
-	case Bratok:
-		action1, action2 := c.(Bratok).getActions()
-		fmt.Println(action1, action2)
+func doPolymorfStuff (character []Character) {
+	for _, c := range character {
+		act1, act2 := c.getActions()
+		fmt.Printf("%v. 3 hours later... %v\n", act1, act2)
 	}
 }
 
@@ -46,6 +42,6 @@ func main() {
 		becameBeast: "AAAAAAARRRRR",
 		useFork: "How I suppose to clean toilet with fork?",
 	}
-	doPolymorfStuff(mad)
-	doPolymorfStuff(bidlo)
+
+	doPolymorfStuff([]Character{mad, bidlo})
 }
